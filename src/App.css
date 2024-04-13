@@ -1,0 +1,99 @@
+.App {
+  text-align: center;
+  /* mak ethe backgroup fill screen */
+  height: 100vh;
+  width: 100vw;
+
+}
+
+/* Create a new parent container for logo and behind-logo */
+.logo-container {
+  position: relative; /* Needed for absolute positioning of children */
+  display: flex; /* Center elements horizontally */
+  align-items: center; /* Center elements vertically */
+  justify-content: center; /* Center elements horizontally within the container */
+  height: 40vmin; /* Set the height of the container */
+}
+
+.App-logo {
+  height: 40vmin; /* Maintain the original height */
+  width: 40vmin; /* Add a width to maintain aspect ratio */
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.Main-container {
+  background-color: #220015;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  
+}
+
+.FullMessage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Arial", sans-serif;
+  font-size: calc(20px + 2vmin);
+  color: #59ffff;
+  display: flex;
+  align-items: center;
+  letter-spacing: 1px;
+  & > span {
+    margin-right: 10px;
+    font-weight: bold;
+  }
+}
+
+/* Add a new class for the anniversary message */
+.anniversary-message {
+  font-size: calc(15px + 2vmin);
+  color: #FFD700; /* Gold color for the anniversary message */
+  font-family: 'Arial', sans-serif;
+}
+
+.text {
+  font-size: 20px;
+  color: #CCCCCC;
+  font-family: Arial;
+  margin-top: 30px;
+}
+.text2 {
+  font-size: 20px;
+  color: #CCCCCC;
+  font-family: Arial;
+  margin-top: 5px;
+}
+
+.behind-logo {
+  position: absolute; /* Positioned within the logo-container */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #CCCCCC; /* Text color */
+  font-size: 38px; /* Adjust font size */
+  font-family: Arial; /* Adjust font family */
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
