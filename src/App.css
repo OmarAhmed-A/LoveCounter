@@ -1,99 +1,435 @@
-.App {
-  text-align: center;
-  /* mak ethe backgroup fill screen */
-  height: 100vh;
-  width: 100vw;
+/* Modern CSS Reset and Variables */
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
 
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Base Colors */
+  --bg-color: #ffffff;
+  --container-bg: #f8f9fa;
+  --text-color: #333333;
+  --logo-text-color: #666666;
+  --form-bg-color: #ffffff;
+  --input-bg-color: #f5f5f5;
+  --input-text-color: #000000;
+  --accent-color: #007bff;
+  --button-text-color: #ffffff;
+  --button-hover-color: #0056b3;
+
+  /* Spacing System */
+  --space-xs: 0.2rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+
+  /* Breakpoints */
+  --mobile: 480px;
+  --tablet: 768px;
+  --desktop: 1024px;
 }
 
-/* Create a new parent container for logo and behind-logo */
+/* Global App styling with better defaults */
+.App {
+  text-align: center;
+  min-height: 100dvh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-color);
+  padding: var(--space-md);
+  box-sizing: border-box;
+  overflow-y: hidden;
+}
+
+/* Main container with improved responsiveness */
+.Main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: fit-content;
+  background-color: var(--bg-color);
+  padding: var(--space-md);
+  margin: auto; /* Center vertically when content is shorter than viewport */
+}
+
+/* Responsive content wrapper */
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  max-width: 1200px;
+  background-color: var(--container-bg);
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  padding: var(--space-lg);
+  gap: var(--space-xl);
+  margin: auto; /* Center in container */
+
+  /* Tablet and above */
+  @media (min-width: 768px) {
+    flex-direction: row;
+    padding: var(--space-xl);
+    min-height: 0; /* Remove minimum height constraint */
+    align-items: flex-start; /* Align items to top */
+  }
+}
+
+/* Counter side with responsive scaling */
+.counter-side {
+  flex: 1;
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Align to top in desktop view */
+  color: var(--text-color);
+  gap: var(--space-lg);
+}
+
+/* Form side adjustments */
+.form-side {
+  flex: 1;
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Align to top in desktop view */
+  align-items: center;
+  background-color: var(--form-bg-color);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Responsive logo container */
 .logo-container {
-  position: relative; /* Needed for absolute positioning of children */
-  display: flex; /* Center elements horizontally */
-  align-items: center; /* Center elements vertically */
-  justify-content: center; /* Center elements horizontally within the container */
-  height: 40vmin; /* Set the height of the container */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 300px;
+  aspect-ratio: 1;
 }
 
 .App-logo {
-  height: 40vmin; /* Maintain the original height */
-  width: 40vmin; /* Add a width to maintain aspect ratio */
-}
+  width: 100%;
+  height: auto;
+  animation: App-logo-spin infinite 20s linear;
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
   }
-}
-
-.Main-container {
-  background-color: #220015;
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  
-}
-
-.FullMessage {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: "Arial", sans-serif;
-  font-size: calc(20px + 2vmin);
-  color: #59ffff;
-  display: flex;
-  align-items: center;
-  letter-spacing: 1px;
-  & > span {
-    margin-right: 10px;
-    font-weight: bold;
-  }
-}
-
-/* Add a new class for the anniversary message */
-.anniversary-message {
-  font-size: calc(15px + 2vmin);
-  color: #FFD700; /* Gold color for the anniversary message */
-  font-family: 'Arial', sans-serif;
-}
-
-.text {
-  font-size: 20px;
-  color: #CCCCCC;
-  font-family: Arial;
-  margin-top: 30px;
-}
-.text2 {
-  font-size: 20px;
-  color: #CCCCCC;
-  font-family: Arial;
-  margin-top: 5px;
 }
 
 .behind-logo {
-  position: absolute; /* Positioned within the logo-container */
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: #CCCCCC; /* Text color */
-  font-size: 38px; /* Adjust font size */
-  font-family: Arial; /* Adjust font family */
+  color: var(--logo-text-color);
+  font-size: clamp(24px, 5vw, 40px);
+  font-family: system-ui, -apple-system, sans-serif;
+  font-weight: bold;
 }
 
-.App-link {
-  color: #61dafb;
+.FullMessage {
+  font-size: clamp(16px, 3vw, 22px);
+  color: var(--text-color);
+  font-family: system-ui, -apple-system, sans-serif;
+  margin-top: var(--space-lg);
+  line-height: 1.4;
 }
 
+/* Modern form styling */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+  gap: var(--space-xs);
+}
+
+label {
+  font-size: clamp(14px, 2vw, 18px);
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+/* Enhanced input styling */
+input[type="text"],
+input[type="datetime-local"] {
+  padding: var(--space-md);
+  width: 100%;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  font-size: clamp(14px, 2vw, 16px);
+  background-color: var(--input-bg-color);
+  color: var(--input-text-color);
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+
+  &:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+    outline: none;
+  }
+}
+
+/* Modern button styling */
+button {
+  padding: var(--space-md) var(--space-lg);
+  background-color: var(--accent-color);
+  color: var(--button-text-color);
+  font-size: clamp(14px, 2vw, 16px);
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: var(--button-hover-color);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+/* Dark Mode with improved contrast */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #121212;
+    --container-bg: #1f1f1f;
+    --text-color: #e0e0e0;
+    --logo-text-color: #cccccc;
+    --form-bg-color: #2a2a2a;
+    --input-bg-color: #333333;
+    --input-text-color: #ffffff;
+    --accent-color: #59ffff;
+    --button-text-color: #cccccc;
+    --button-hover-color: #47cccc;
+  }
+
+  /* Dark mode specific shadows */
+  .content-wrapper {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .form-side {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Smooth logo animation with reduced motion support */
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* Mobile-first responsive adjustments */
+@media (max-width: 480px) {
+  .content-wrapper {
+    padding: var(--space-md);
+    gap: var(--space-lg);
+  }
+
+  .form-side {
+    padding: var(--space-md);
+  }
+
+  .behind-logo {
+    font-size: 28px;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 481px) and (max-width: 768px) {
+  .content-wrapper {
+    padding: var(--space-lg);
+  }
+}
+
+/* Print styles for better documentation */
+@media print {
+  .App-logo {
+    animation: none;
+  }
+
+  .content-wrapper {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+
+  button {
+    background: none;
+    border: 1px solid #000;
+    color: #000;
+  }
+}
+
+/* Desktop-specific adjustments */
+@media (min-width: 1024px) {
+  .content-wrapper {
+    max-height: 80vh; /* Limit height to prevent overflow */
+    overflow-y: hidden;
+  }
+
+  .counter-side,
+  .form-side {
+    height: 100%; /* Fill available height */
+    overflow-y: hidden;
+    overflow-x: hidden;
+  }
+}
+
+
+/* Previous styles remain the same until link container... */
+
+.link-container {
+  width: 80%;
+  display: flex;
+  gap: var(--space-sm);
+  align-items: flex-start; /* Changed from center to handle multiple lines */
+  margin-top: var(--space-sm);
+}
+
+/* Option 1: Scrollable Link */
+.copyable-link-scroll {
+  flex: 1;
+  padding: var(--space-md);
+  font-size: clamp(14px, 2vw, 16px);
+  background-color: var(--input-bg-color);
+  color: var(--input-text-color);
+  border-radius: 8px;
+  cursor: pointer;
+  overflow-x: auto;
+  white-space: nowrap;
+  text-align: left;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  text-decoration: none;
+  
+  /* Styling the scrollbar */
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: var(--input-bg-color);
+    border-radius: 4px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+    border-radius: 4px;
+  }
+  
+  &:hover {
+    border-color: var(--accent-color);
+    background-color: color-mix(in srgb, var(--input-bg-color) 95%, var(--accent-color) 5%);
+  }
+}
+
+/* Option 2: Wrapping Link */
+.copyable-link-wrap {
+  flex: 1;
+  padding: var(--space-md);
+  font-size: clamp(14px, 2vw, 16px);
+  background-color: var(--input-bg-color);
+  color: var(--input-text-color);
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  text-align: left;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  text-decoration: none;
+  max-height: 200px; /* Prevent excessive vertical growth */
+  overflow-y: auto;
+  
+  /* Styling the scrollbar */
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: var(--input-bg-color);
+    border-radius: 4px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+    border-radius: 4px;
+  }
+  
+  &:hover {
+    border-color: var(--accent-color);
+    background-color: color-mix(in srgb, var(--input-bg-color) 95%, var(--accent-color) 5%);
+  }
+}
+
+.copy-button {
+  padding: var(--space-md);
+  background-color: var(--accent-color);
+  color: var(--button-text-color);
+  font-size: clamp(14px, 2vw, 16px);
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  white-space: nowrap;
+  color: #000000;
+  
+  &:hover {
+    background-color: var(--button-hover-color);
+    transform: translateY(-2px);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+/* Success state for copy button */
+.copy-button.success {
+  background-color: #28a745;
+  
+  &:hover {
+    background-color: #218838;
+  }
+}
+
+/* Dark mode scrollbar adjustments */
+@media (prefers-color-scheme: dark) {
+  .copyable-link-scroll,
+  .copyable-link-wrap {
+    &::-webkit-scrollbar-track {
+      background: var(--input-bg-color);
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background: var(--accent-color);
+    }
   }
 }
