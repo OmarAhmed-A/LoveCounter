@@ -32,10 +32,10 @@ function FillForm(): React.JSX.Element {
           <input type="text" value={newInitials} onChange={(event) => setNewInitials(event.target.value)} />
         </label>
         <br />
-        <button type="submit">Update Query String</button>
+        <button type="submit">View Demo</button>
       
       <div>
-        <h2>Query String:</h2>
+        <h2>Your free link:</h2>
         <CopyableLink link={queryString} wrap={false} />
       </div>
       </form>
